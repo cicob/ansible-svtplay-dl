@@ -1,0 +1,49 @@
+---
+
+
+
+- name: update apt cache
+  apt: update_cache=yes cache_valid_time=3600
+  become: yes
+  become_method: sudo
+
+
+
+- name: Install required packages
+  apt:
+    name: "{{ packages }}"
+    state: present
+  become: yes
+  become_method: sudo
+  vars:
+    packages:
+    - curl
+    - git
+    - python3-pip
+    - ffmpeg
+
+
+- name: Upgrade pip3 to latest version
+  become: yes
+  become_method: sudo
+  shell: "pip3 install --upgrade pip"
+
+
+
+# Ubuntu 18.04 ships with Python 3, as the default Python installation.
+# But still we need to specify the usage of pip3
+
+- name: Install Python3 packages
+  pip: 
+    name: "{{ packages }}"
+    state: present
+    executable: pip3
+  become: yes
+  become_method: sudo
+  vars:
+    packages:
+    - cryptography
+    - PyYaml
+    - Requests
+    - PySocks
+

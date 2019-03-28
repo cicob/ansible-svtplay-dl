@@ -1,0 +1,12 @@
+---
+### Defaults for a deploy user
+
+
+app_user: "ops"
+app_group: "ops"
+usersHomeDir: "/home"
+
+
+svtdl_dir: "{{usersHomeDir}}/{{app_user}}/svtplay-dl"
+
+

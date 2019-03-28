@@ -1,0 +1,48 @@
+---
+
+#================================================
+# Documentation
+#    https://github.com/spaam/svtplay-dl
+#================================================
+
+
+#================================================
+# Install packages and application
+#================================================
+
+
+
+# A) To install from source (Python) run this (default)
+
+
+# Packages
+- include: packages.yml
+
+
+
+- name: Git Checkout of svtplay-dl package
+  git:
+    repo: 'https://github.com/spaam/svtplay-dl'
+    dest: "{{svtdl_dir}}"
+  tags: gitto
+
+
+
+- name: Install the svtplay-dl package
+  become: yes
+  become_method: sudo
+  shell: "cd {{svtdl_dir}}; python3 setup.py install"
+
+
+
+
+
+
+#================================================
+# Deprecated: 
+# Installation of the prepackaged version
+#================================================
+
+# B) To install the prepackaged version, include this
+#- include: svtdl-prepackaged.yml
+

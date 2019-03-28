@@ -1,0 +1,22 @@
+---
+
+- name: Add an Apt key for SVT-Play-DL
+  apt_key:
+    url: https://svtplay-dl.se/release-key.txt
+    state: present
+  become: True
+
+
+- name: update apt cache
+  apt: update_cache=yes cache_valid_time=3600
+  become: True
+
+
+- name: Install required packages
+  apt: name={{item}} state=present
+  become: True
+  with_items:
+    - curl
+    - svtplay-dl
+    - ffmpeg  # For postprocessing of video files, if you want it.
+
