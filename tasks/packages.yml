@@ -4,29 +4,32 @@
 
 - name: update apt cache
   apt: update_cache=yes cache_valid_time=3600
-  become: yes
-  become_method: sudo
+  become: true
+  tags: bbb
 
 
 
 - name: Install required packages
-  apt:
+  package:
     name: "{{ packages }}"
     state: present
-  become: yes
-  become_method: sudo
+  become: true
   vars:
     packages:
     - curl
     - git
     - python3-pip
+    - python-setuptools   #Installing both v2 and v3 for now, to compensate for the version-mixups between Ansible vs host
+    - python3-setuptools
     - ffmpeg
+  tags: bbb
 
 
 - name: Upgrade pip3 to latest version
   become: yes
   become_method: sudo
   shell: "pip3 install --upgrade pip"
+  tags: bbb
 
 
 
@@ -37,13 +40,12 @@
   pip: 
     name: "{{ packages }}"
     state: present
-    executable: pip3
-  become: yes
-  become_method: sudo
+    executable: /usr/local/bin/pip3
+  become: true
   vars:
     packages:
     - cryptography
     - PyYaml
     - Requests
     - PySocks
-
+  tags: bbb
