@@ -20,11 +20,14 @@
 
 
 
-- name: Git Checkout of svtplay-dl package
+- name: Git Checkout and Update the svtplay-dl package
   git:
     repo: 'https://github.com/spaam/svtplay-dl'
     dest: "{{svtdl_dir}}"
+    update: yes
+    version: master
   tags: gitto
+
 
 
 
