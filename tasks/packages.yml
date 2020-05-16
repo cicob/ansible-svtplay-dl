@@ -1,12 +1,9 @@
 ---
 
 
-
-- name: update apt cache
+- name: Update apt cache
   apt: update_cache=yes cache_valid_time=3600
   become: true
-  tags: bbb
-
 
 
 - name: Install required packages
@@ -22,14 +19,12 @@
     - python-setuptools   #Installing both v2 and v3 for now, to compensate for the version-mixups between Ansible vs host
     - python3-setuptools
     - ffmpeg
-  tags: bbb
 
 
 - name: Upgrade pip3 to latest version
   become: yes
   become_method: sudo
   shell: "pip3 install --upgrade pip"
-  tags: bbb
 
 
 
@@ -48,4 +43,5 @@
     - PyYaml
     - Requests
     - PySocks
-  tags: bbb
+
+    
