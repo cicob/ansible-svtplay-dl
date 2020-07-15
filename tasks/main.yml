@@ -12,11 +12,22 @@
 
 
 
-# A) To install from source (Python) run this (default)
+# A) To install from source (Python) run this 
 
 
-# Packages
-- include: packages.yml
+
+
+
+# Ubuntu 16 = xenial
+# Ubintu 18 = bionic
+ 
+
+#--- Packages tailored for a certain distro or release
+- name: Include specific packages for {{ansible_distribution}}-{{ansible_distribution_release}}
+  include:  packages-{{ansible_distribution}}-{{ansible_distribution_release}}.yml
+
+
+
 
 
 

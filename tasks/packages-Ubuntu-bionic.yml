@@ -1,9 +1,42 @@
 ---
 
 
+#sudo add-apt-repository ppa:savoury1/ffmpeg4
+
+- name: Install repository for ffmpeg4
+  apt_repository:
+    repo: ppa:savoury1/ffmpeg4
+    state: present
+  become: true
+
+
+
+#sudo add-apt-repository ppa:savoury1/graphics
+
+- name: Install repository for graphics
+  apt_repository:
+    repo: ppa:savoury1/graphics
+    state: present
+  become: true
+
+
+
+#sudo add-apt-repository ppa:savoury1/multimedia
+
+- name: Install repository for multimedia
+  apt_repository:
+    repo: ppa:savoury1/multimedia
+    state: present
+  become: true
+
+
 - name: Update apt cache
   apt: update_cache=yes cache_valid_time=3600
   become: true
+
+
+
+
 
 
 - name: Install required packages
